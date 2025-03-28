@@ -73,4 +73,9 @@ fn main() {
     println!("{:?}", modulo_with_power_dp(12, 8, 5));
     let duration = start.elapsed();
     println!("modulo_with_power_dp execution time: {:32} seconds", duration.as_secs_f32());
+
+    let start = Instant::now();
+    println!("{:?}", reverse_cipher("hello"));
+    let duration = start.elapsed();
+    println!("reverse_cipher execution time: {:32} seconds", duration.as_secs_f32());
 }
