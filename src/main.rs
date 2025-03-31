@@ -1,5 +1,7 @@
 use std::time::Instant;
 
+use cryptography::symmetric::{caesar_cipher, reverse_cipher::reverse_cipher};
+
 fn modulo(a: i128, b: i128) -> i128 {
     a % b
 }
@@ -13,7 +15,8 @@ fn modulo_with_power_dp(a: i128, power: i128, b: i128) -> i128 {
     let mut exp = power;
 
     while exp > 0 {
-        if exp % 2 == 1 { // analyze the binary number from the rtl
+        if exp % 2 == 1 {
+            // analyze the binary number from the rtl
             println!("triggered {:?}", exp);
             result = modulo(result * base, b);
         }
@@ -62,20 +65,40 @@ fn main() {
     let start = Instant::now();
     println!("{:?}", modulo_addition_chain_with_power(12, 8, 5));
     let duration = start.elapsed();
-    println!("modulo_addition_chain_with_power execution time: {:32} seconds", duration.as_secs_f32());
+    println!(
+        "modulo_addition_chain_with_power execution time: {:32} seconds",
+        duration.as_secs_f32()
+    );
 
     let start = Instant::now();
     println!("{:?}", modulo_with_power_unoptimized(12, 8, 5));
     let duration = start.elapsed();
-    println!("modulo_with_power_unoptimized execution time: {:32} seconds", duration.as_secs_f32());
+    println!(
+        "modulo_with_power_unoptimized execution time: {:32} seconds",
+        duration.as_secs_f32()
+    );
 
     let start = Instant::now();
     println!("{:?}", modulo_with_power_dp(12, 8, 5));
     let duration = start.elapsed();
-    println!("modulo_with_power_dp execution time: {:32} seconds", duration.as_secs_f32());
+    println!(
+        "modulo_with_power_dp execution time: {:32} seconds",
+        duration.as_secs_f32()
+    );
 
     let start = Instant::now();
     println!("{:?}", reverse_cipher("hello"));
     let duration = start.elapsed();
-    println!("reverse_cipher execution time: {:32} seconds", duration.as_secs_f32());
+    println!(
+        "reverse_cipher execution time: {:32} seconds",
+        duration.as_secs_f32()
+    );
+
+    let start = Instant::now();
+    println!("{:?}", caesar_cipher::encrypt("CEASER CIPHER", 25));
+    let duration = start.elapsed();
+    println!(
+        "caesar_cipher::encrypt execution time: {:32} seconds",
+        duration.as_secs_f32()
+    );
 }
